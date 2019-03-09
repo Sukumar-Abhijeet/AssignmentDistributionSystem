@@ -1,0 +1,138 @@
+<div class="my-login-page">
+  <section class="h-100">
+    <div class="container h-100">
+      <div class="row justify-content-md-center h-100">
+        <div class="card-wrapper">
+          <div class="brand">
+            <img src="../../assets/images/register.jpg" alt="Register page">
+          </div>
+          <div class="card fat">
+            <div class="card-body">
+              <h4 class="card-title">Student Registration</h4>
+              <form method="POST" class="my-login-validation" id="studentRegistrationForm" [formGroup]="studentRegistrationForm"
+                (ngSubmit)="studentRegistration(studentRegistrationForm.value)">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" formControlName="studentName" class="form-control" required autofocus>
+                  <div class="invalid-feedback">
+                    What's your name?
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="registration_number">Registration Number</label>
+                  <input type="text" class="form-control" maxlength="10" (blur)="checkRegNumber()" formControlName="registrationNumber"
+                    required autofocus>
+                  <label class="invalid-feedback" [ngClass]="{'d-block': regValid}">
+                    User With This Registration Number Already Exist
+                  </label>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="Branch">Branch</label>
+                  <select class="form-control" formControlName="branchId" required autofocus>
+                    <option *ngFor="let branch of branchList" value="{{branch.Id}}">{{branch.Name}}</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    What's your Branch?
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Semester number">Present Semester</label>
+                  <select class="form-control" formControlName="semesterId" required autofocus>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    What's your Branch?
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="section">Section</label>
+                  <select class="form-control" formControlName="sectionName" required autofocus>
+                    <option value="A">Section - A</option>
+                    <option value="B">Section - B</option>
+                    <option value="C">Section - C</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    What's your Section?
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="group">Group</label>
+                  <select class="form-control" formControlName="groupNumber" required autofocus>
+                    <option value="1">Group - I</option>
+                    <option value="2">Group - II</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    What's your Group?
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="email">E-Mail Address</label>
+                  <input type="email" class="form-control" formControlName="email" required>
+                  <div class="invalid-feedback">
+                    Your email is invalid
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="number">Mobile Number</label>
+                  <input type="text" class="form-control" maxlength="10" formControlName="number" required>
+                  <div class="invalid-feedback">
+                    Your Mobile Number is invalid
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" formControlName="password" required data-eye>
+                  <div class="invalid-feedback">
+                    Password is required
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="custom-checkbox custom-control">
+                    <input type="checkbox" formControlName="agreeTerm" id="agree" class="custom-control-input" required="">
+                    <label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
+                    <div class="invalid-feedback">
+                      You must agree with our Terms and Conditions
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group m-0">
+                  <button type="submit" class="btn btn-primary btn-block" [disabled]="studentRegistrationForm.invalid || regValid">
+                    Register
+                  </button>
+                  <label class="text-success" [ngClass]="{'d-block': regSuccess,'d-none': !regSuccess}">
+                    You Have Been SuccessFully Registered
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': regFailed,'d-none': !regFailed}">
+                    Some error occured. Please contact Administrator.
+                  </label>
+                </div>
+                <div class="mt-4 text-center">
+                  Already have an account? <a href="#." routerLink="/login">Login</a>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>

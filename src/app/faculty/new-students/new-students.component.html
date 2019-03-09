@@ -1,0 +1,49 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Add Professor</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Student Management</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">New Registration</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Check New Registered Students</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Registration Number</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of studentList">
+                <td>{{student.RegNo}}</td>
+                <td>{{student.Name}}</td>
+                <td>{{student.Mobile}}</td>
+                <td>INACTIVE</td>
+                <button type="button" class="btn btn-info " (click)="activateStudent(student.RegNo)">Activate</button>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,164 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Your Profile</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Map Syllabus</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">View Profile</li>
+      </ol>
+    </div>
+  </div>
+
+
+
+  <!-- if PassWord Not Set -->
+  <div class="row newRow" [ngClass]="{'d-block': passwordNotSet,'d-none': !passwordNotSet}">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Change Default Password</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+          <form action="#" id="changePasswordForm" [formGroup]="changePasswordForm" (ngSubmit)="changePassword(changePasswordForm.value)"
+            class="form-horizontal">
+            <div class="form-body">
+
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Enter Old Password
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-3">
+                  <input type="password" formControlName="defaultPass" data-required="1" placeholder="Old Password"
+                    class="form-control input-height">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Enter New Password
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-3">
+                  <input type="password" formControlName="newPass" data-required="1" placeholder="NewPassword" class="form-control input-height">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Re-enter New Password
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-3">
+                  <input type="password" formControlName="enterPass" data-required="1" placeholder="Reenter  Password"
+                    class="form-control input-height">
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Change Password
+                </label>
+
+                <div class="col-md-5">
+                  <button type="submit" class="btn btn-info m-r-20" [disabled]="changePasswordForm.invalid">Change Now</button>
+                  <label class="text-success" [ngClass]="{'d-block': regSuccess,'d-none': !regSuccess}">
+                    Subject Successfully Added
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': regFailed,'d-none': !regFailed}">
+                    Some error occured. Please try Again.
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': passwordDidNotmatch,'d-none': !passwordDidNotmatch}">
+                    Password Didnot match , Re-enter again
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': error,'d-none': !error}">
+                    Error Occured , contact Administrator
+                  </label>
+                </div>
+
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END PassWord Not Set -->
+
+
+
+  <div class="row newRow" [ngClass]="{'d-block': passwordSet,'d-none': !passwordSet}">
+    <div class=" col-md-12
+    col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Profile Details</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <div class="form-body">
+            <div class="form-group row">
+              <label class="control-label col-md-5">Name
+                <span class="required"> * </span>
+              </label>
+              <label class="control-label col-md-7">{{Name}}
+              </label>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-5">Registration number
+                <span class="required"> * </span>
+              </label>
+              <label class="control-label col-md-7">{{userId}}
+              </label>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-5">Mobile number
+                <span class="required"> * </span>
+              </label>
+              <label class="control-label col-md-7">{{Mobile}}
+              </label>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-5">Email
+                <span class="required"> * </span>
+              </label>
+              <label class="control-label col-md-7">{{Email}}
+              </label>
+            </div>
+
+
+
+
+            <div class="form-group row">
+              <label class="control-label col-md-5">Designation
+                <span class="required"> * </span>
+              </label>
+              <label class="control-label col-md-7">{{userDesignation}}
+              </label>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-5">Password
+              </label>
+
+              <div class="col-md-7">
+                <button type="submit" class="btn btn-info m-r-20" (click)="newPassword()">Change Password</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

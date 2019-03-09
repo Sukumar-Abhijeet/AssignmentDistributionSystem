@@ -1,0 +1,57 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Remove Temporary Admin </div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item active">Remove Admin</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Remove Temorary Admin </header>
+          <label class="text-success" [ngClass]="{'d-block': removeSuccess,'d-none': !removeSuccess}">
+            Faculty Removed from Admin
+          </label>
+          <label class="text-danger" [ngClass]="{'d-block': removeFailed,'d-none': !removeFailed}">
+            Some error occured. Please try again later.
+          </label>
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Faculty Name</th>
+                <th>Registration Number</th>
+                <th>Branch</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let faculty of tempAdminList">
+                <td>{{faculty.Name}}</td>
+                <td>{{faculty.Id}}</td>
+                <td>{{faculty.BranchName}}</td>
+                <td>{{faculty.Email}}</td>
+                <td>{{faculty.Number}}</td>
+                <button type="button" class="btn btn-info " (click)=removeAdmin(faculty.Id)>Remove Now</button>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<aside class="menu-wrap">
+    <div class="sidebar left ">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="http://via.placeholder.com/160x160" class="rounded-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{userName}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <ul class="list-sidebar bg-defoult">
+
+
+            <!-- Student menus -->
+
+            <li *ngIf="studentMenu"> <a href="#" data-toggle="collapse" data-target="#syllabus" class="collapsed active">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Syllabus </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                <ul class="sub-menu collapse" id="syllabus">
+                    <li class="active"><a href="#">View Syllabus</a></li>
+                    <li><a href="#">View TimeTable</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="studentMenu"> <a href="#" data-toggle="collapse" data-target="#Assignments" class="collapsed active">
+                    <i class="fa fa-th-large"></i>
+                    <span class="nav-label"> Assignments </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="Assignments">
+                    <li class="active"><a routerLink="student/download-assignment">Download Assignments</a></li>
+                    <li><a routerLink="student/upload-assignment">Upload Assignments</a></li>
+
+                </ul>
+            </li>
+
+
+            <!-- End Student menus -->
+
+            <!-- Faculty Menus -->
+
+            <li *ngIf="facultyMenu"> <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Assignments </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="dashboard">
+                    <li class="active"><a routerLink="faculty/assign-assignment">Assign</a></li>
+                    <li><a routerLink="faculty/check-uploaded">Check Uploaded</a></li>
+                    <li><a routerLink="faculty/check-downloaded">Check Downloaded</a></li>
+                </ul>
+            </li>
+
+            <li *ngIf="facultyMenu"> <a routerLink="faculty/assigned-subjects">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Assigned-Subjects </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+            </li>
+
+            <!-- End Facult Menus -->
+
+
+            <!-- Admin menus -->
+
+
+            <li *ngIf="adminMenu"> <a href="#" data-toggle="collapse" data-target="#Faculty" class="collapsed active">
+                    <i class="fa fa-user-secret"></i>
+                    <span class="nav-label"> Faculty </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="Faculty">
+                    <li class="active"><a routerLink="/faculty/register-faculty">Register Faculty</a></li>
+                    <li><a routerLink="/faculty/view-faculty">View Faculty</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="adminMenu"> <a href="#" data-toggle="collapse" data-target="#Syllabus" class="collapsed active">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Map Syllabus </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="Syllabus">
+                    <li class="active"><a routerLink="/faculty/add-subject">Add Subject</a></li>
+                    <li><a routerLink="/faculty/link-subjects">Link Subjects</a></li>
+                    <li><a routerLink="/faculty/subjects-list">Subjects List</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="adminMenu"> <a href="#" data-toggle="collapse" data-target="#StudentManagement" class="collapsed active">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label"> Student Management </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="StudentManagement">
+                    <li class="active"><a routerLink="/faculty/registered-students">Registered Students</a></li>
+                    <li><a routerLink="/faculty/new-students">New Registrations</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="adminMenu"> <a href="#" data-toggle="collapse" data-target="#AdminManagement" class="collapsed active">
+                    <i class="fa fa-diamond"></i>
+                    <span class="nav-label"> Admin Management </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="AdminManagement">
+                    <li class="active"><a routerLink="/faculty/assign-admin">Assign Admin</a></li>
+                    <li><a routerLink="/faculty/remove-admin">Remove Admin</a></li>
+
+                </ul>
+            </li>
+
+            <!--End Admin menus -->
+
+            <!-- Temp Admin -->
+            <li *ngIf="tempAdmin"> <a href="#" data-toggle="collapse" data-target="#Faculty" class="collapsed active">
+                    <i class="fa fa-user-secret"></i>
+                    <span class="nav-label"> Faculty </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="Faculty">
+                    <li class="active"><a routerLink="/faculty/register-faculty">Register Faculty</a></li>
+                    <li><a routerLink="/faculty/view-faculty">View Faculty</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="tempAdmin"> <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Assignments </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="dashboard">
+                    <li class="active"><a routerLink="faculty/assign-assignment">Assign</a></li>
+                    <li><a routerLink="faculty/check-uploaded">Check Uploaded</a></li>
+                    <li><a routerLink="faculty/check-downloaded">Check Downloaded</a></li>
+                </ul>
+            </li>
+            <li *ngIf="tempAdmin"> <a href="#" data-toggle="collapse" data-target="#Syllabus" class="collapsed active">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Map Syllabus </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="Syllabus">
+                    <li class="active"><a routerLink="/faculty/add-subject">Add Subject</a></li>
+                    <li><a routerLink="/faculty/link-subjects">Link Subjects</a></li>
+                    <li><a routerLink="/faculty/subjects-list">Subjects List</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="tempAdmin"> <a href="#" data-toggle="collapse" data-target="#StudentManagement" class="collapsed active">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label"> Student Management </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+                <ul class="sub-menu collapse" id="StudentManagement">
+                    <li class="active"><a routerLink="/faculty/registered-students">Registered Students</a></li>
+                    <li><a routerLink="/faculty/new-students">New Registrations</a></li>
+
+                </ul>
+            </li>
+            <li *ngIf="tempAdmin"> <a routerLink="faculty/assigned-subjects">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label"> Assigned-Subjects </span> <span class="fa fa-chevron-left pull-right"></span>
+                </a>
+            </li>
+
+            <!--End Temp Admin -->
+
+
+
+        </ul>
+    </div>
+</aside>

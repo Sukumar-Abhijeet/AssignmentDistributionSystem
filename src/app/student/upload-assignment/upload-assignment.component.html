@@ -1,0 +1,100 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Upload Assignments</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Assignments</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">Upload Assignments</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Upload Assignments</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <form [formGroup]="UploadAssignmentForm" enctype="multipart/form-data" action="#" id="UploadAssignmentForm"
+            class="form-horizontal" (ngSubmit)="UploadAssignment(UploadAssignmentForm.value)">
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select Subject
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <select class="form-control input-height" formControlName="subjects" (change)="showModule()">
+                  <option *ngFor="let subject of subjectList" value="{{subject.Id}}">{{subject.Name}} /
+                    {{subject.ShortName}}</option>
+                </select>
+                <label class="text-danger" [ngClass]="{'d-block': noSubject,'d-none': !noSubject}">
+                  No Subject Linked , Please Contact Administrator.
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select a Module
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <select class="form-control input-height" formControlName="module" (change)="showAssignment()">
+                  <option *ngFor="
+                  let module of selectedModules" value="{{module}}">Module{{module}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select an Assignment
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <select class="form-control input-height" formControlName="assignment" id="fileName">
+                  <option *ngFor="
+                  let assignment of assignmentList" value="{{assignment.AssignmentId}}"
+                    [attr.data-name]="assignment.FileName">{{assignment.FileName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select Your Assignment File
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <input type="file" class="btn btn-info" (change)="detectFile($event)" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">Action
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <button type="file" class="btn btn-info" [disabled]="UploadAssignmentForm.invalid">Upload</button>
+                <label class="text-danger" [ngClass]="{'d-block': alreadyUploaded,'d-none': !alreadyUploaded}">
+                  Assignment Already Uploaded Contact Administrator
+                </label>
+                <label class="text-danger" [ngClass]="{'d-block': noAssignment,'d-none': !noAssignment}">
+                  No Assignments In this Module.
+                </label>
+                <label class="text-danger" [ngClass]="{'d-block': fileUploadFailed,'d-none': !fileUploadFailed}">
+                  Upload Failed Contact Admin.
+                </label>
+                <label class="text-success" [ngClass]="{'d-block': assignmentUploadSuccess,'d-none': !assignmentUploadSuccess}">
+                  Assignment is Uploaded Successfully.
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Link Subjects</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Map Syllabus</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">Link Subject</li>
+      </ol>
+    </div>
+  </div>
+
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Map Syllabus</header>
+
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <div class="form-body">
+            <form action="#" id="linkSubjectForm" [formGroup]="linkSubjectForm" class="form-horizontal" (ngSubmit)="linkSubjects(linkSubjectForm.value)">
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Department
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" id="department" formControlName="department">
+                    <option *ngFor="let branch of branchList" value="{{branch.Id}}" [attr.data-name]="branch.Name">{{branch.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Batch
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" id="batch" formControlName="batch">
+                    <option *ngFor="let batch of batchList" value="{{batch.Id}}" [attr.data-name]="batch.Batch">{{batch.Batch}}</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Semester
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" formControlName="semseter">
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                    <option value="5">5th</option>
+                    <option value="6">6th</option>
+                    <option value="7">7th</option>
+                    <option value="8">8th</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Subject
+                  <span class="required"> * </span>
+                </label>
+
+                <div class="col-lg-9 col-md-8">
+                  <select formControlName="multipleSubjects" id="multipleSubjects" class="form-control select2-multiple"
+                    (change)="selectedSubjectsCheck()" placeholder="Search A Subject" multiple>
+                    <option *ngFor="let subject of subjectList" value="{{subject.Id}}">{{subject.Name}}/{{subject.shortName}}</option>
+
+                  </select>
+                </div>
+
+
+
+
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Actions
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-info m-r-20" [disabled]="linkSubjectForm.invalid">Link Subjects</button>
+                  <label class="text-success" [ngClass]="{'d-block': regSuccess,'d-none': !regSuccess}">
+                    Subjects Successfully linked.
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': regFailed,'d-none': !regFailed}">
+                    Some error occured. Please contact Administrator.
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <button type="button" [disabled]="linkSubjectForm.controls.department.invalid || linkSubjectForm.controls.batch.invalid || linkSubjectForm.controls.semseter.invalid  "
+                    class="btn btn-info m-r-20" (click)="showLinkModule()">Link
+                    Modules</button>
+                  <label class="text-danger" [ngClass]="{'d-block': noSubjectLinked,'d-none': !noSubjectLinked}">
+                    No subject is linked . Please Link Subjects first.
+                  </label>
+                </div>
+              </div>
+            </form>
+            <!-- Add Modules -->
+
+            <div class="card-box" *ngIf="showModule">
+              <div class="card-head">
+                <header>Add Modules</header>
+
+              </div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="control-label col-md-8">Add Module For {{department}}: {{batchName}}
+                    : {{semseter}}
+
+                  </label>
+
+                </div>
+                <form action="#" id="addModulesForm" [formGroup]="addModulesForm" class="form-horizontal" (ngSubmit)="addModules(addModulesForm.value)">
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Select A Linked Subject
+                      <span class="required"> * </span>
+                    </label>
+                    <div class="col-md-5">
+                      <select class="form-control input-height" name="semseter" formControlName="selectedLinkedSubject">
+                        <option *ngFor="let linkedSubject Of linkedSubjectList" value="{{linkedSubject.Id}}">{{linkedSubject.Name}}/{{linkedSubject.ShortName}}</option>
+
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Add Modules
+                      <span class="required"> * </span>
+                    </label>
+                    <div class="col-lg-9 col-md-8">
+                      <select id="multipleModules" formControlName="selectedLinkedModules" (change)="selectedModulesCheck()"
+                        class="form-control select2-multiple" placeholder="Search A Module" multiple>
+                        <option value="1">Module 1</option>
+                        <option value="2">Module 2</option>
+                        <option value="3">Module 3</option>
+                        <option value="4">Module 4</option>
+                        <option value="5">Module 5</option>
+                        <option value="6">Module 6</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="control-label col-md-4">Link The Subject Modules
+                      <span class="required"> * </span>
+                    </label>
+                    <div class="col-md-5">
+                      <button type="submit" class="btn btn-info m-r-20" [disabled]="addModulesForm.invalid">Link
+                        Modules
+                        Now</button>
+                      <label class="text-success" [ngClass]="{'d-block': linkModSuccess,'d-none': !linkModSuccess}">
+                        Subject Modules Successfully linked.
+                      </label>
+                      <label class="text-danger" [ngClass]="{'d-block': linkModFailed,'d-none': !linkModFailed}">
+                        Some error occured. Please contact Administrator.
+                      </label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+            <!-- End Of Add Modules -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

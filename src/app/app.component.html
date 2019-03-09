@@ -1,0 +1,6 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header *ngIf="headerVisible | async"></app-header>
+<div class="main">
+    <app-menu *ngIf="headerVisible | async"></app-menu>
+    <router-outlet (activate)="headerShow()"></router-outlet>
+</div>

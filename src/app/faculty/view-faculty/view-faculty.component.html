@@ -1,0 +1,147 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Assign Faculty</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Faculty</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">Assign Faculty to a subject</li>
+      </ol>
+    </div>
+  </div>
+
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Assign Faculty-Subject</header>
+
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <div class="form-body">
+            <form action="#" id="assignFaultyForm" [formGroup]="assignFaultyForm" class="form-horizontal" (ngSubmit)="assignFaculty(assignFaultyForm.value)">
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Department
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" id="department" (change)="getFacultyByBranch()"
+                    formControlName="department">
+                    <option *ngFor="let branch of branchList" value="{{branch.Id}}" [attr.data-name]="branch.Name">{{branch.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Batch
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" id="batch" formControlName="batch">
+                    <option *ngFor="let batch of batchList" value="{{batch.Id}}" [attr.data-name]="batch.Batch">{{batch.Batch}}</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Semester
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" formControlName="semseter" (change)="fetchSubjects()">
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                    <option value="5">5th</option>
+                    <option value="6">6th</option>
+                    <option value="7">7th</option>
+                    <option value="8">8th</option>
+                  </select>
+                  <label class="text-danger" [ngClass]="{'d-block': noSubjectsLinked,'d-none': !noSubjectsLinked}">
+                    No Subjects Linked Please link A subject First.
+                  </label>
+
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select Subject
+                  <span class="required"> * </span>
+                </label>
+
+                <div class="col-md-5">
+                  <select formControlName="multipleSubjects" id="multipleSubjects" class="form-control input-height"
+                    placeholder="Search A Subject">
+                    <option *ngFor="let subject of subjectList" value="{{subject.Id}}">{{subject.Name}}/{{subject.ShortName}}</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Select faculty
+                  <span class="required"> * </span>
+                </label>
+
+                <div class="col-md-5">
+                  <select formControlName="faculty" id="faculty" class="form-control input-height" placeholder="Select A faculty"
+                    (change)="newFaculty()">
+                    <option *ngFor="let faculty of facultyList" value="{{faculty.Id}}">{{faculty.Name}}</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="control-label col-md-3">Actions
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-info m-r-20 assignFacultyBtn" [disabled]="assignFaultyForm.invalid">Assign
+                    Faculty</button>
+                  <label class="text-success" [ngClass]="{'d-block': assignSuccess,'d-none': !assignSuccess}">
+                    Faculty Has been Assigned the Subject Successfully.
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': alreadyAssigned,'d-none': !alreadyAssigned}">
+                    Faculty Already Assigned.
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': assignFailed,'d-none': !assignFailed}">
+                    Some error occured. Please try again later.
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group row changeFaculty" id="">
+                <label class="control-label col-md-3">Do You want To change Assigned Faculty ?
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-4">
+                  <span class="required"> Select Another Faculty From List </span>
+                  <button type="button" class="btn btn-info m-r-20" (click)="changeFaculty(assignFaultyForm.value)">Change
+                    Now</button>
+                  <label class="text-success" [ngClass]="{'d-block': changedFaculty,'d-none': !changedFaculty}">
+                    Faculty Has been Changed Successfully
+                  </label>
+                  <label class="text-danger" [ngClass]="{'d-block': notChanged,'d-none': !notChanged}">
+                    Some error occured. Please try again later.
+                  </label>
+                </div>
+              </div>
+
+
+            </form>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

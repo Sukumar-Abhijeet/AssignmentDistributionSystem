@@ -1,0 +1,47 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">View All Subjects</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item active">Subjects List</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>All Subjects List</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Subject Name</th>
+                <th>Code</th>
+                <th>Short Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subject of subjectList">
+                <td>{{subject.Id}}</td>
+                <td>{{subject.Name}}</td>
+                <td>{{subject.Code}}</td>
+                <td>{{subject.shortName}}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

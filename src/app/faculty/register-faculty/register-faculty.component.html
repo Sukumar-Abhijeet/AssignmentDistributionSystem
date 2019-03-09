@@ -1,0 +1,131 @@
+<div class="dashboard-wrap">
+
+
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Add Professor</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Faculty</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">Register Faculty</li>
+      </ol>
+    </div>
+  </div>
+
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>Basic Information</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+          <form id="facultyRegistrationForm" [formGroup]="facultyRegistrationForm" (ngSubmit)="facultyRegistration(facultyRegistrationForm.value)"
+            class="
+            form-horizontal">
+            <div class="form-body">
+              <div class="form-group row">
+                <label class="control-label col-md-3"> Name
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <input type="text" formControlName="facultyName" data-required="1" placeholder="Enter  Name" class="form-control input-height">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Departments
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" formControlName="department">
+                    <option *ngFor="let branch of branchList" value="{{branch.Id}}">{{branch.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Designation
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <input type="text" formControlName="designation" data-required="1" placeholder="enter your designation"
+                    class="form-control input-height">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Role
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" formControlName="role">
+                    <option value="FACULTY">FACULTY</option>
+                    <option value="ADMIN">ADMIN</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Mobile No.
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <input formControlName="number" type="text" (blur)="checkMobNumber()" placeholder="mobile number"
+                    class="form-control input-height">
+                </div>
+                <label class="invalid-feedback" [ngClass]="{'d-block': regValid}">
+                  Mobile Number Already Exist
+                </label>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Email
+                </label>
+                <div class="col-md-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control input-height" formControlName="email" placeholder="Email Address">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="control-label col-md-3">Gender
+                  <span class="required"> * </span>
+                </label>
+                <div class="col-md-5">
+                  <select class="form-control input-height" formControlName="gender">
+                    <option value="">Select...</option>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div class="row">
+                  <label class="control-label col-md-3">Actions
+                  </label>
+                  <div class=" col-md-4">
+                    <button type="submit" class="btn btn-info m-r-20" [disabled]="facultyRegistrationForm.invalid || regValid">Register</button>
+                    <label class="text-success" [ngClass]="{'d-block': regSuccess,'d-none': !regSuccess}">
+                      Faculty has Been SuccessFully Registered.
+                    </label>
+                    <label class="text-danger" [ngClass]="{'d-block': regFailed,'d-none': !regFailed}">
+                      Some error occured. Please try Again.
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-default">Cancel</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

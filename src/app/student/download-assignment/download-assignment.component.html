@@ -1,0 +1,86 @@
+<div class="dashboard-wrap">
+  <div class="page-bar">
+    <div class="page-title-breadcrumb">
+      <div class=" pull-left">
+        <div class="page-title">Download Assignments</div>
+      </div>
+      <ol class="breadcrumb page-breadcrumb float-right">
+        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/dashboard">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li><a class="parent-item">Assignments</a>&nbsp;<i class="fa fa-angle-right"></i>
+        </li>
+        <li class="active">Download Assignments</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row newRow">
+    <div class="col-md-12 col-sm-12">
+      <div class="card card-box">
+        <div class="card-head">
+          <header>New Assignments</header>
+        </div>
+        <div class="card-body" id="bar-parent">
+
+          <form [formGroup]="downloadAssignmentForm">
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select Subject
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <select class="form-control input-height" formControlName="subjects" (change)="showModule()">
+                  <option *ngFor="let subject of subjectList" value="{{subject.SubjectId}}">{{subject.Name}} /
+                    {{subject.ShortName}}</option>
+                </select>
+                <label class="text-danger" [ngClass]="{'d-block': noSubject,'d-none': !noSubject}">
+                  No Subject Linked , Please Contact Administrator.
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-md-3">Select a Module
+                <span class="required"> * </span>
+              </label>
+              <div class="col-md-5">
+                <select class="form-control input-height" formControlName="module" (change)="showAssignment()">
+                  <option *ngFor="
+                  let module of selectedModules" value="{{module}}">Module{{module}}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <table class="table table-responsive hideTable">
+              <thead>
+                <tr>
+                  <th>Assignment Name</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Difficulty Level</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let assignment of assignmentList">
+                  <td>{{assignment.FileName}}</td>
+                  <td>{{assignment.StartDate}}</td>
+                  <td>{{assignment.EndDate}}</td>
+                  <td>{{assignment.Difficulty}}</td>
+                  <td>
+                    <a href="http://localhost:8080/AssignmentDistribution/assets/facultyAssignments/{{assignment.FileName}}"
+                      download=""><button type="button" class="btn btn-info " (click)="setDownload(assignment.AssignmentId)">Download</button></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <label class="text-danger" [ngClass]="{'d-block': noAssignment,'d-none': !noAssignment}">
+              No Assignments Found
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
